@@ -1,0 +1,213 @@
+.navbar-nav {
+    -webkit-box-orient: horizontal !important;
+    flex-direction: row !important;
+}
+
+.navbar-nav>.left {
+    font-size: 1rem !important;
+    color: antiquewhite !important;
+    text-align: left !important;
+}
+
+.navbar-nav>.right-1 {
+    padding-right: 0;
+    padding-left: 0;
+    color: #2D3B7B !important;
+    font-weight: bold;
+    text-align: right !important;
+    display: block;
+    padding: 0.5rem 0.1rem;
+}
+
+.navbar-nav>.right-2 {
+    padding-right: 0;
+    padding-left: 0;
+    color: #9A9E9E !important;
+    text-align: right !important;
+    display: block;
+    padding: 0.5rem 0.1rem;
+}
+
+#content {
+    padding: 0 !important;
+}
+
+.card-header {
+    background-color: #2D3B7B!important;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 1.1rem;
+}
+
+.card-header>.encabezado {
+    font-weight: bold !important;
+}
+
+.card-header>.body {
+    font-size: 0.85rem;
+}
+
+.card-body>.encabezado {
+    text-align: center;
+    color: #9A9E9E;
+    font-size: 1.25rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: bold !important;
+}
+
+.login-boton {
+    background-color: rgb(128 184 226);
+    border-radius: 10px !important;
+    padding-top: 5px;
+    font-weight: bold !important;
+    border-color: rgb(128 184 226);
+    color: white;
+    transition: 0.4s;
+}
+
+.login-boton:hover {
+    color: white;
+    background-color: rgb(47 145 218);
+    border-color: rgb(154 158 158);
+}
+
+.card-body {
+    box-shadow: 0px 0px 5px 0px #7A7A7A !important;
+}
+
+#sidebar {
+    background: #2D3B7B!important;
+}
+
+.btn.btn-navedit {
+    background: #2D3B7B !important;
+    border-color: #2D3B7B !important;
+    color: whitesmoke !important;
+}
+
+.footer-2 {
+    padding: 0 0 !important;
+    bottom: 0 !important;
+    position: absolute;
+    width: 100% !important;
+}
+
+.margin-home-content {
+    padding-right: 50px;
+    padding-left: 20px;
+}
+
+.card-header-2 {
+    text-align: start;
+    background-color: transparent;
+    color: #2D3B7B;
+}
+
+.card-body>.encabezado-2 {
+    text-align: start;
+    font-size: 16px;
+    color: #2D3B7B;
+}
+
+.card-body>.cuerpo-2 {
+    text-align: start;
+    font-size: 14px;
+    color: #9A9E9E;
+}
+
+.titulo-home {
+    text-align: start;
+    font-size: 20px !important;
+    color: #9A9E9E !important;
+    font-weight: bolder !important;
+    margin-bottom: 40px !important;
+}
+
+.generate-sentencia {
+    background-color: rgb(128 184 226);
+    border-radius: 10px !important;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-color: rgb(128 184 226);
+    color: white;
+    transition: 0.4s;
+}
+
+.generate-sentencia:hover {
+    color: white;
+    background-color: rgb(47 145 218);
+    border-color: rgb(154 158 158);
+}
+
+.delete-sentencia {
+    background-color: #e05656 !important;
+    border-radius: 10px !important;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-color: transparent !important;
+}
+
+.al-fondo {
+    text-align: left;
+    bottom: 0 !important;
+    position: relative;
+}
+
+.margin-content-2 {
+    padding-right: 50px;
+    padding-left: 20px;
+    max-width: 1000px !important;
+}
+
+.table-responsive {
+    border-radius: 10px !important;
+    box-shadow: 0px 0px 5px 0px #7A7A7A !important;
+    border-color: transparent !important;
+}
+
+.input-group {
+    padding-left: 50px !important;
+}
+
+a.dflex {
+    color: #80B8E2 !important;
+    background-color: black !important;
+}
+
+.table {
+    color: #7A7A7A !important;
+}
+
+.text-primary {
+    color: #80B8E2 !important;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #2D3B7B;
+    border-color: #2D3B7B;
+}
+
+.page-link {
+    color: #2D3B7B;
+}
+
+.step-boton {
+    background-color: #80B8E2 !important;
+    border-radius: 10px !important;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-weight: bold !important;
+    border-color: transparent !important;
+}
+
+.mostrar-saltos {
+    white-space: pre !important;
+}
+
+.create-action {
+    align-items: baseline !important;
+    padding-right: 1rem !important;
+}
