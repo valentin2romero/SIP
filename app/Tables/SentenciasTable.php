@@ -27,6 +27,7 @@ class SentenciasTable extends AbstractTable
             ])
             ->rowsNumber(5)
             ->activateRowsNumberDefinition(true)
+            ->destroyConfirmationHtmlAttributes(fn($sentencia)=>['data-confirm' => __('¿ Estas seguro en eliminar la sentencia :NroExp ?', ['NroExp' => $sentencia->NroExp])])
         ;
     }
 

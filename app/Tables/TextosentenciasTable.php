@@ -25,7 +25,8 @@ class TextosentenciasTable extends AbstractTable
                 'destroy' => ['name' => 'texto-sentencia.destroy'],
             ])
             ->rowsNumber(5)
-            ->activateRowsNumberDefinition(true);
+            ->activateRowsNumberDefinition(true)
+            ->destroyConfirmationHtmlAttributes(fn ($textoSentencia) => ['data-confirm' => __('¿ Estas seguro en eliminar el texto sentencia de la variable: :variable , que tiene la opcion: :opcion ?', ['variable' => $textoSentencia->variable, 'opcion' => $textoSentencia->opcion])]);
     }
 
     /**
@@ -36,10 +37,10 @@ class TextosentenciasTable extends AbstractTable
      * @throws \ErrorException
      */
     protected function columns(Table $table): void
-    {   
+    {
         $table->column('id')->title('Numero de ID');
         $table->column('variable')->title('Variable Representada')->searchable();
-        $table->column('fecha_inicio')->dateTimeFormat('d/m/Y')->title('Fecha Inicio')->sortable(true,'desc');
+        $table->column('fecha_inicio')->dateTimeFormat('d/m/Y')->title('Fecha Inicio')->sortable(true, 'desc');
         $table->column('fecha_final')->dateTimeFormat('d/m/Y')->title('Fecha Finalizacion');
     }
 
