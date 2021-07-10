@@ -8,13 +8,14 @@
  3- php artisan key:generate
  4- php artisan cache:clear
  5- php artisan config:cache
- 6- php artisan serve
+ 6- npm run production
+ 7- php artisan serve
 ```
 
 # Ayudas
 ```
-   En caso de dar problema el paso  6- npm run production.
-   Entonces ejecutar comando: npm install.
+   En caso de dar problema el npm run production.
+   Entonces ejecutar comando: npm rebuild node-sass.
 ```
 ```
    En caso de querer modificar el .env una vez ya compilado.
