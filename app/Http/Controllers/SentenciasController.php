@@ -187,9 +187,9 @@ class SentenciasController extends Controller
             for ($i = 0; $i < (sizeof($vector_strings) - 1); $i++) {
                 if (!is_null($vector_strings[$i])) {
                     $cadena = $cadena . $vector_strings[$i];
-                    if(!is_null($vector_strings[$i+1])){
-                        $cadena = $cadena . ' o ';
-                    }
+                }
+                if(!is_null($vector_strings[$i+1]) && $cadena != ''){
+                    $cadena = $cadena . ' o ';
                 }
             }
         }
