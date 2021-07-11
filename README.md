@@ -35,5 +35,5 @@
  ```
  [10/07/2021]
  ```
-   Correccion de letra "o", al generar fecha adquisicion en el word.
+    Correccion de letra "o", al generar fecha adquisicion en el word.
  ```
