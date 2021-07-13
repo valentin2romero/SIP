@@ -5,7 +5,7 @@
     <div class="row margin-home-content">
         <div class="col-md-10">
             <div class="titulo-home">
-                <a href="{{route('sentencia.index')}}">SENTENCIA</a> > HISTORIAL
+                <a href="{{route('home')}}">INICIO</a> > SENTENCIA
             </div>
             {{ $table }}
         </div>
