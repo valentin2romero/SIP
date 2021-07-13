@@ -37,3 +37,7 @@
  ```
     Correccion de letra "o", al generar fecha adquisicion en el word.
  ```
+ [12/7/2021]
+ ```
+    Se le resta 2 años a la fecha que figura en "$Tiempo", cuando este es "NO".
+ ```
