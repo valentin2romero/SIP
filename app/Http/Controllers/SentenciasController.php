@@ -131,13 +131,14 @@ class SentenciasController extends Controller
         $template->setValue('PideError', $sentencia->PideError);
         $template->setValue('PlanteaError', $sentencia->PlanteaError);
 
+        // Nuevos cambios v6 up-2
         // Creamos las variables y asignamos la fecha sin formato
         // Esta fecha no tendra formato, hasta que no se aplique en el setValue().
         $FecAdq_aux = date_create($sentencia->FecAdq);
         $FecPedido_aux = date_create($sentencia->FecPedido);
         // Seteamos el valor de la fecha con el respectivo formato
         $template->setValue('FecAdq', date_format($FecAdq_aux, 'd/m/Y'));
-        $template->setValue('FecPedido', date_format($FecPedido_aux, 'd/m/Y'));
+        // Fin Nuevos cambios v6 up-2
 
         $template->setValue('PideTasa', $this->get_value('$PideTasa', $sentencia->PideTasa, $sentencia->created_at));
         $template->setValue('PideExim', $this->get_value('$PideExim', $sentencia->PideExim, $sentencia->created_at));
@@ -163,14 +164,25 @@ class SentenciasController extends Controller
         $cadena_aux = NULL;
         $resultado_aux = NULL;
         
+        // Nuevos cambios v6 up-2
         // En este caso, si debemos utilizar la fecha de Pedido, recordar que debemos restarle 2 años.
-        $FecPedido_aux_for_tiempo = $FecPedido_aux;
-        date_add($FecPedido_aux_for_tiempo, date_interval_create_from_date_string('-2 years'));
+        $FecPedido_aux_with_2year_less = $FecPedido_aux;
+        date_add($FecPedido_aux_with_2year_less, date_interval_create_from_date_string('-2 years'));
 
         $cadena_aux = ($this->get_value('$Tiempo', $sentencia->Tiempo, $sentencia->created_at));
         $resultado_aux = $this->get_special_value($cadena_aux, '13$FecAdq', date_format($FecAdq_aux, 'd/m/Y'));
-        $resultado_aux = $this->get_special_value($resultado_aux, '$FecPedido', date_format($FecPedido_aux_for_tiempo, 'd/m/Y'));
+        $resultado_aux = $this->get_special_value($resultado_aux, '$FecPedido', date_format($FecPedido_aux_with_2year_less, 'd/m/Y'));
         $template->setValue('Tiempo', $resultado_aux);
+        // Fin nuevos cambios v6 up-2
+
+        // Nuevos cambios v6 up-3
+        // En basea la condicion, seteamos el valor de la fecha con el respectivo formato
+        if($sentencia->Tiempo == 1){
+            $template->setValue('FecPedido_or_FecAdq', date_format($FecAdq_aux, 'd/m/Y'));
+        }else if ($sentencia->Tiempo == 0) {
+            $template->setValue('FecPedido_or_FecAdq', date_format($FecPedido_aux_with_2year_less, 'd/m/Y'));    
+        }
+        // Fin Nuevos cambios v6 up-3
 
         $cadena_aux = ($this->get_value('$Honorarios', $sentencia->Honorarios, $sentencia->created_at));
         $resultado_aux = $this->get_special_value($cadena_aux, '6$NomAbogado', $sentencia->NomAbogado);
