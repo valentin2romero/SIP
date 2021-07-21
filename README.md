@@ -41,3 +41,9 @@
  ```
     Se le resta 2 años a la fecha que figura en "$Tiempo", cuando este es "NO".
  ```
+ [21/7/2021] [v6-up3]
+ ```
+    En el FALLO II, ahora la fecha varia. Esto dependera de la respuesta en la variable $Tiempo.  
+    Se agrego una nueva variable llamada "FecPedido_or_FecAdq" en el Word.  
+    En base a al respuesta, si es SI se utiliza $FecAdq. En caso contrario, viceversa.
+ ```
