@@ -1,4 +1,3 @@
-@include('texto-sentencia.partials.form')
 <form wire:submit.prevent="submit">
     @if ($step > 0 && $step <= 11)
         Paso {{ $step }} de 11
