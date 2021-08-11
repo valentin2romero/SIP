@@ -130,12 +130,15 @@ class SentenciasController extends Controller
         $template->setValue('NroJP', $sentencia->NroJP);
         $template->setValue('PideError', $sentencia->PideError);
         $template->setValue('PlanteaError', $sentencia->PlanteaError);
+        $template->setValue('JubPen', Tipoprevisiones::find($sentencia->JubPen)->descripcion);
+        
         $cadena_aux = NULL;
-        $resultado_aux = NULL;    
+        $resultado_aux = NULL;
+        
+        // Asignacion en base a TextoSentencias
         $cadena_aux = ($this->get_value('$Honorarios', $sentencia->Honorarios, $sentencia->created_at));
         $resultado_aux = $this->get_special_value($cadena_aux, '6$NomAbogado', $sentencia->NomAbogado);
         $template->setValue('Honorarios', $resultado_aux);
-        // Asignacion en base a TextoSentencias
         $template->setValue('PideTasa', $this->get_value('$PideTasa', $sentencia->PideTasa, $sentencia->created_at));
         $template->setValue('PideExim', $this->get_value('$PideExim', $sentencia->PideExim, $sentencia->created_at));
         $template->setValue('ContestaExc', $this->get_value('$ContestaExc', $sentencia->ContestaExc, $sentencia->created_at));
@@ -143,7 +146,6 @@ class SentenciasController extends Controller
         $template->setValue('TasaFallo', $this->get_value('$TasaFallo', $sentencia->TasaFallo, $sentencia->created_at));
         $template->setValue('PideEximG', $this->get_value('$PideEximG', $sentencia->PideEximG, $sentencia->created_at));
         $template->setValue('FecIni', $this->get_value('$FecIni', $sentencia->FecIni, $sentencia->created_at));
-        $template->setValue('JubPen', Tipoprevisiones::find($sentencia->JubPen)->descripcion);
         $template->setValue('FecAdq_1_2', $this->mng_fec_adq([
             $this->get_value('$FecAdq1', $sentencia->FecAdq1, $sentencia->created_at),
             $this->get_value('$FecAdq2', $sentencia->FecAdq2, $sentencia->created_at)
