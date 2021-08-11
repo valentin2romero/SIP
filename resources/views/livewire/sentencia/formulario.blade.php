@@ -194,7 +194,7 @@
                 <br />
                 <div class="col-md-4">
                     <div class="form-group">
-                        <select class="form-control" name="PideExim" wire:model.lazy="PideExim" required autofocus>
+                        <select class="form-control" name="PideExim" wire:model.lazy="PideExim" autofocus>
                             <option value="">¿Pide eximición de ganancias?</option>
                             <option value="0">No</option>
                             <option value="1">Si</option>
@@ -205,19 +205,21 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <select class="form-control" name="ContestaExc" wire:model.lazy="ContestaExc" required
-                            autofocus>
-                            <option value="">¿Contesta excepciones?</option>
-                            <option value="0">No</option>
-                            <option value="1">Si</option>
-                        </select>
-                        @error('ContestaExc')
-                            <small class="form-text text-danger">
-                                {{ $message }}
-                            </small>
-                        @enderror
-                    </div>
+                    @if ($this->dependencia_id != 2)
+                        <div class="form-group">
+                            <select class="form-control" name="ContestaExc" wire:model.lazy="ContestaExc" required
+                                autofocus>
+                                <option value="">¿Contesta excepciones?</option>
+                                <option value="0">No</option>
+                                <option value="1">Si</option>
+                            </select>
+                            @error('ContestaExc')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
             @endif
 

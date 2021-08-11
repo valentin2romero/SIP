@@ -211,6 +211,7 @@ class Mostrar extends Component
         } else if ($value == 1) {
             return 'Si';
         }
+        return null;
     }
     private function get_name_dependencia()
     {

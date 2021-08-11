@@ -61,6 +61,7 @@ class Formulario extends Component
         $this->sentencia = NULL;
         $this->Tiempo = 9;
         $this->old_FecPedido = NULL;
+        $this->ContestaExc = NULL;
         if ($sentencia) {
             $this->sentencia_id = $sentencia->id;
             $this->cargar_valores($sentencia);
@@ -144,13 +145,16 @@ class Formulario extends Component
         $this->valores['PlanteaError'] = $this->PlanteaError;
         $this->step++;
     }
-
+    
     public function submit5()
     {
-        $this->validate([
-            'PideExim' => 'required|numeric',
-            'ContestaExc' => 'required|numeric',
-        ]);
+        $this->validate(['PideExim' => 'required|numeric']);
+        
+        if($this->dependencia_id == 2){
+            $this->ContestaExc = 0;     
+        }
+        $this->validate(['ContestaExc' => 'required|numeric']);
+        
         $this->PideEximG = $this->PideExim;
         $this->valores['PideExim'] = $this->PideExim;
         $this->valores['ContestaExc'] = $this->ContestaExc;
