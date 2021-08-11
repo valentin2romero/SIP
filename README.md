@@ -8,8 +8,9 @@
  3- php artisan key:generate
  4- php artisan cache:clear
  5- php artisan config:cache
- 6- npm run production
- 7- php artisan serve
+ 6- php artisan migrate
+ 7- npm run production
+ 8- php artisan serve
 ```
 
 # Ayudas
