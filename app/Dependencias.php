@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Dependencias extends Model
 {
     protected $fillable = [
-        'descripcion'
+        'descripcion', 'name_model'
     ];
 }
