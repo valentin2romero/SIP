@@ -151,7 +151,7 @@ class Formulario extends Component
         $this->validate(['PideExim' => 'required|numeric']);
         
         if($this->dependencia_id == 2){
-            $this->ContestaExc = 0;     
+            $this->ContestaExc = -1;     
         }
         $this->validate(['ContestaExc' => 'required|numeric']);
         
