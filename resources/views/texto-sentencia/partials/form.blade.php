@@ -142,3 +142,34 @@
         </div>
     </div>
 </div>
+
+<br />
+
+<div class="card">
+    <div class="card-body">
+        <div class="encabezado-2">
+            Dependencia
+        </div>
+        <div class="cuerpo-2">
+            Elija la dependencia a cual pertenece este texto sentencia.<br />
+            En caso de utilizar este texto sentencia para todas las dependencias, elegir dicha opcion. En dicho caso, este texto sentencia se utilizara en todas las dependencias, en los cuales no se haya asignado esta misma variable y opcion (para dicha dependencia) o esten fuera del rango de fechas.<br/>
+            <br />
+            <div class="form-group">
+                <div class="form-group">
+                    <select class="form-control" name="dependencia_id" autofocus>
+                        <option value="" {{{(isset($texto_sentencia->dependencia_id) and is_null($texto_sentencia->dependencia_id)) ? 'selected' : ''}}}>Todas las dependencias</option>
+                        @foreach ($dependencias as $dependencia)
+                            <option value="{{ $dependencia->id }}" {{{(isset($texto_sentencia->dependencia_id) and ($texto_sentencia->dependencia_id == $dependencia->id)) ? 'selected' : ''}}}>{{ $dependencia->descripcion }}</option>
+                        @endforeach
+                    </select>
+                    @error('dependencia_id')
+                        <small class="form-text text-danger">
+                            {{ $message }}
+                        </small>
+                    @enderror
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

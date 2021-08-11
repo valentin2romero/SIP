@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dependencias;
 use Illuminate\Http\Request;
 use App\Textosentencias;
 use \App\Tables\TextosentenciasTable;
@@ -34,7 +35,8 @@ class TextosentenciasController extends Controller
     public function show($id)
     {
         $texto_sentencia = Textosentencias::find($id);
-        return view('texto-sentencia.show', compact('texto_sentencia'));
+        $dependencia = Dependencias::find($texto_sentencia->dependencia_id);
+        return view('texto-sentencia.show', compact('texto_sentencia', 'dependencia'));
     }
 
     /**
@@ -44,7 +46,8 @@ class TextosentenciasController extends Controller
      */
     public function create()
     {
-        return view('texto-sentencia.create');
+        $dependencias = Dependencias::all();
+        return view('texto-sentencia.create', compact('dependencias'));
     }
 
     /**
@@ -61,6 +64,8 @@ class TextosentenciasController extends Controller
             'descripcion' => 'required',
             'fecha_inicio' => 'required|date',
             'fecha_final' => 'required|date',
+            'fecha_final' => 'required|date',
+            'dependencia_id' => 'nullable|numeric',
         ]);
         Textosentencias::create($request->all());
         return redirect(route('texto-sentencia.index'));
@@ -76,7 +81,8 @@ class TextosentenciasController extends Controller
     public function edit($id)
     {
         $texto_sentencia = Textosentencias::find($id);
-        return view('texto-sentencia.edit', compact('texto_sentencia'));
+        $dependencias = Dependencias::all();
+        return view('texto-sentencia.edit', compact('texto_sentencia', 'dependencias'));
     }
     /**
      * Update the specified resource in storage.
@@ -93,6 +99,7 @@ class TextosentenciasController extends Controller
             'descripcion' => 'required',
             'fecha_inicio' => 'required|date',
             'fecha_final' => 'required|date',
+            'dependencia_id' => 'nullable|numeric',
         ]);
         $texto_sentencia = Textosentencias::find($request->id);
         $texto_sentencia->variable = $request->variable;
@@ -100,6 +107,7 @@ class TextosentenciasController extends Controller
         $texto_sentencia->descripcion = $request->descripcion;
         $texto_sentencia->fecha_inicio = $request->fecha_inicio;
         $texto_sentencia->fecha_final = $request->fecha_final;
+        $texto_sentencia->dependencia_id = $request->dependencia_id;
         $texto_sentencia->save();
         return redirect(route('texto-sentencia.index'));
     }
