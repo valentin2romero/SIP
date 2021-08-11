@@ -108,7 +108,10 @@ class SentenciasController extends Controller
     {
         try {
             $sentencia = Sentencias::find($id);
-            $template = new \PhpOffice\PhpWord\TemplateProcessor('word/modelo.docx');
+            //V7 - Buscamos el name_model de dicha dependencia
+            $name_model = Dependencias::find($sentencia->dependencia_id)->name_model;
+            $template = new \PhpOffice\PhpWord\TemplateProcessor('word/'.$name_model.'.docx');
+            //V7 - Fin
             $this->process_values($template, $sentencia);
             $tempFile = tempnam(sys_get_temp_dir(), 'PHPWord');
             $template->saveAs($tempFile);
