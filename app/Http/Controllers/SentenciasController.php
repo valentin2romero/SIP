@@ -139,24 +139,24 @@ class SentenciasController extends Controller
         $resultado_aux = NULL;
         
         // Asignacion en base a TextoSentencias
-        $cadena_aux = ($this->get_value('$Honorarios', $sentencia->Honorarios, $sentencia->created_at));
+        $cadena_aux = ($this->get_value('$Honorarios', $sentencia->Honorarios, $sentencia->created_at, $sentencia->dependencia_id));
         $resultado_aux = $this->get_special_value($cadena_aux, '6$NomAbogado', $sentencia->NomAbogado);
         $template->setValue('Honorarios', $resultado_aux);
-        $template->setValue('PideTasa', $this->get_value('$PideTasa', $sentencia->PideTasa, $sentencia->created_at));
-        $template->setValue('PideExim', $this->get_value('$PideExim', $sentencia->PideExim, $sentencia->created_at));
-        $template->setValue('ContestaExc', $this->get_value('$ContestaExc', $sentencia->ContestaExc, $sentencia->created_at));
-        $template->setValue('TienePAP', $this->get_value('$TienePAP', $sentencia->TienePAP, $sentencia->created_at));
-        $template->setValue('TasaFallo', $this->get_value('$TasaFallo', $sentencia->TasaFallo, $sentencia->created_at));
-        $template->setValue('PideEximG', $this->get_value('$PideEximG', $sentencia->PideEximG, $sentencia->created_at));
-        $template->setValue('FecIni', $this->get_value('$FecIni', $sentencia->FecIni, $sentencia->created_at));
+        $template->setValue('PideTasa', $this->get_value('$PideTasa', $sentencia->PideTasa, $sentencia->created_at, $sentencia->dependencia_id));
+        $template->setValue('PideExim', $this->get_value('$PideExim', $sentencia->PideExim, $sentencia->created_at, $sentencia->dependencia_id));
+        $template->setValue('ContestaExc', $this->get_value('$ContestaExc', $sentencia->ContestaExc, $sentencia->created_at, $sentencia->dependencia_id));
+        $template->setValue('TienePAP', $this->get_value('$TienePAP', $sentencia->TienePAP, $sentencia->created_at, $sentencia->dependencia_id));
+        $template->setValue('TasaFallo', $this->get_value('$TasaFallo', $sentencia->TasaFallo, $sentencia->created_at, $sentencia->dependencia_id));
+        $template->setValue('PideEximG', $this->get_value('$PideEximG', $sentencia->PideEximG, $sentencia->created_at, $sentencia->dependencia_id));
+        $template->setValue('FecIni', $this->get_value('$FecIni', $sentencia->FecIni, $sentencia->created_at, $sentencia->dependencia_id));
         $template->setValue('FecAdq_1_2', $this->mng_fec_adq([
-            $this->get_value('$FecAdq1', $sentencia->FecAdq1, $sentencia->created_at),
-            $this->get_value('$FecAdq2', $sentencia->FecAdq2, $sentencia->created_at)
+            $this->get_value('$FecAdq1', $sentencia->FecAdq1, $sentencia->created_at, $sentencia->dependencia_id),
+            $this->get_value('$FecAdq2', $sentencia->FecAdq2, $sentencia->created_at, $sentencia->dependencia_id)
         ]));
         $template->setValue('FecAdq_3_4_5', $this->mng_fec_adq([
-            $this->get_value('$FecAdq3', $sentencia->FecAdq3, $sentencia->created_at),
-            $this->get_value('$FecAdq4', $sentencia->FecAdq4, $sentencia->created_at),
-            $this->get_value('$FecAdq5', $sentencia->FecAdq5, $sentencia->created_at)
+            $this->get_value('$FecAdq3', $sentencia->FecAdq3, $sentencia->created_at, $sentencia->dependencia_id),
+            $this->get_value('$FecAdq4', $sentencia->FecAdq4, $sentencia->created_at, $sentencia->dependencia_id),
+            $this->get_value('$FecAdq5', $sentencia->FecAdq5, $sentencia->created_at, $sentencia->dependencia_id)
         ]));
         
         // Nuevos cambios v6 up-2
@@ -171,7 +171,7 @@ class SentenciasController extends Controller
         $resultado_aux = NULL;    
         $FecPedido_aux_with_2year_less = $FecPedido_aux;
         date_add($FecPedido_aux_with_2year_less, date_interval_create_from_date_string('-2 years'));
-        $cadena_aux = ($this->get_value('$Tiempo', $sentencia->Tiempo, $sentencia->created_at));
+        $cadena_aux = ($this->get_value('$Tiempo', $sentencia->Tiempo, $sentencia->created_at, $sentencia->dependencia_id));
         $resultado_aux = $this->get_special_value($cadena_aux, '13$FecAdq', date_format($FecAdq_aux, 'd/m/Y'));
         $resultado_aux = $this->get_special_value($resultado_aux, '$FecPedido', date_format($FecPedido_aux_with_2year_less, 'd/m/Y'));
         $template->setValue('Tiempo', $resultado_aux);
@@ -186,9 +186,11 @@ class SentenciasController extends Controller
         }
         // Fin Nuevos cambios v6 up-3
     }
-    private function get_value($variable, $opcion, $create_at)
+    private function get_value($variable, $opcion, $create_at, $dependencia_id)
     {
-        if ($aux = Textosentencias::where([['variable', '=', $variable], ['opcion', '=', $opcion], ['fecha_inicio', '<=', $create_at], ['fecha_final', '>=', $create_at]])->first()) {
+        if ($aux = Textosentencias::where([['variable', '=', $variable], ['opcion', '=', $opcion], ['fecha_inicio', '<=', $create_at], ['fecha_final', '>=', $create_at], ['dependencia_id', '=', $dependencia_id]])->first()) {
+            return $aux->descripcion;
+        }else if ($aux = Textosentencias::where([['variable', '=', $variable], ['opcion', '=', $opcion], ['fecha_inicio', '<=', $create_at], ['fecha_final', '>=', $create_at], ['dependencia_id', '=', NULL]])->first()) {
             return $aux->descripcion;
         }
         return NULL;
